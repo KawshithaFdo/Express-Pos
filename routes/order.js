@@ -11,8 +11,8 @@ connection.connect(function (err) {
     if (err) {
         console.log(err);
     } else {
-        console.log('Connected to the MySQL server');
-        var query = "CREATE TABLE IF NOT EXISTS orders (oid VARCHAR(255) PRIMARY KEY, c_id VARCHAR(255), date VARCHAR(255) )"
+        console.log('Connected to the MySQL server(Orders)');
+        var query = "CREATE TABLE IF NOT EXISTS `Orders`( oid VARCHAR(15),c_id VARCHAR(15),date DATE, CONSTRAINT PRIMARY KEY (oid),CONSTRAINT FOREIGN KEY (c_id) REFERENCES customer(id) ON DELETE CASCADE ON UPDATE CASCADE)"
         connection.query(query, function (err, result) {
             if (result.warningCount === 0) {
                 console.log("order table created!");
@@ -89,7 +89,7 @@ router.delete('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id
 
-    var query = "SELECT * from orders WHERE id=?";
+    var query = "SELECT * from orders WHERE oid=?";
 
     connection.query(query, [id], (err, result) => {
         if(err) console.log(err);

@@ -11,7 +11,7 @@ connection.connect(function (err) {
     if (err) {
         console.log(err);
     } else {
-        console.log('Connected to the MySQL server');
+        console.log('Connected to the MySQL server(Item)');
         var query = "CREATE TABLE IF NOT EXISTS item (id VARCHAR(255) PRIMARY KEY, name VARCHAR(255), qty DOUBLE , unitprice DOUBLE)"
         connection.query(query, function (err, result) {
             if (result.warningCount === 0) {
